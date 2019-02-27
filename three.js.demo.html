@@ -479,15 +479,12 @@
             }
         })
         initLine(topologyRelationshipData);
-
         animate();
-        bgCanvas()
+        bgCanvas();
         document.getElementById("btn").onclick = function () {
             createAttackPoint(getPathByID(attackEvent));
         }
-
         document.getElementById("container").append(renderer.domElement);
-
     }
 
     // 点击事件和移入事件的回调
