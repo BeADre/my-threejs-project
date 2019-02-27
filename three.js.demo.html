@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>3.js测试8.3</title>
+    <title>three.js.demo</title>
     <style>
         body {
             margin: 0;
@@ -30,7 +30,7 @@
             z-index: 0;
         }
 
-        #jh {
+        #descriptionContainer {
             width: 200px;
             height: 50px;
             background-color: rgba(255, 255, 255, 0.3);
@@ -46,7 +46,7 @@
 <div id="container"></div>
 <canvas id="bgCanvas"></canvas>
 <button id="btn">点击</button>
-<div id="jh">
+<div id="descriptionContainer">
 
 </div>
 </body>
@@ -301,7 +301,7 @@
     }  // 攻击点与被攻击点对象
     const topologyIdPosition = {};//以ID为key，position为值的对象
     const parts = [];
-    const jh = document.getElementById("jh"); // 显示名称DIV
+    const descriptionContainer = document.getElementById("descriptionContainer"); // 显示名称DIV
     let isExplodeAnimationStart = true;
     let changeColorVariable = true;
 
@@ -311,7 +311,7 @@
 
     //渲染器
     const renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setClearColor("#222222");
+    renderer.setClearColor("#011024");
     renderer.setSize(window.innerWidth, window.innerHeight)
 
     // 相机
@@ -502,16 +502,16 @@
         let intersects = raycaster.intersectObjects(k);
         if (event.type === "mousemove") {
             if (intersects.length > 0 && intersects[0].object) {
-                jh.style.display = "block";
-                jh.style.left = event.clientX + "px";
-                jh.style.top = event.clientY + "px";
-                jh.innerHTML = intersects[0].object.diyName;
+                descriptionContainer.style.display = "block";
+                descriptionContainer.style.left = event.clientX + "px";
+                descriptionContainer.style.top = event.clientY + "px";
+                descriptionContainer.innerHTML = intersects[0].object.diyName;
             } else {
-                jh.style.display = "none";
+                descriptionContainer.style.display = "none";
             }
         } else if (event.type === "click") {
             if (intersects.length > 0 && intersects[0].object) {
-
+                alert("click！！！");
             }
         }
 
@@ -887,10 +887,10 @@
             content.clearRect(0, 0, WIDTH, HEIGHT);
             for (let i in round)
                 round[i].move();
-            requestAnimationFrame(animate);
+            requestAnimationFrame(bgAnimate);
         }
 
-        function init() {
+        function bgInit() {
             for (let i = 0; i < initRoundPopulation; i++) {
                 round[i] = new Round_item(i, Math.random() * WIDTH, Math.random() * HEIGHT);
                 round[i].draw();
@@ -898,7 +898,7 @@
             bgAnimate();
         }
 
-        init();
+        bgInit();
     }
 
     window.onload = init();
